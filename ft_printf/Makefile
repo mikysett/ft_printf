@@ -6,13 +6,13 @@
 #    By: msessa <marvin@42.fr>                      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/01/14 14:13:08 by msessa            #+#    #+#              #
-#    Updated: 2021/03/18 10:56:59 by msessa           ###   ########.fr        #
+#    Updated: 2021/05/21 21:24:29 by msessa           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	libftprintf.a
 
-LIBFT	=	libft
+LIBFT	=	libft/libft
 
 HEADERS	=	includes
 
@@ -72,14 +72,14 @@ $(DIR_O)/%.o: $(DIR_S)/%.c $(DEPS)
 
 $(NAME):	$(DEPS) $(OBJS)
 			@make bonus -C $(LIBFT)
-			@cp libft/libft.a ./$(NAME)
+			@cp $(LIBFT)/libft.a ./$(NAME)
 			ar rcs $(NAME) $(OBJS)
 
 all:		$(NAME)
 
 test:		$(DEPS) $(TOBJS)
 			@make bonus -C $(LIBFT)
-			@cp libft/libft.a ./$(NAME)
+			@cp $(LIBFT)/libft.a ./$(NAME)
 			$(CC) -g -fsanitize=address $(NAME) $(TOBJS) -o test
 
 clean:
@@ -96,7 +96,7 @@ re:			fclean all
 
 bonus:		$(BDEPS) $(BOBJS)
 			@make bonus -C $(LIBFT)
-			@cp libft/libft.a ./$(NAME)
+			@cp $(LIBFT)/libft.a ./$(NAME)
 			ar rc $(NAME) $(BOBJS)
 
 .PHONY:		all clean fclean re bonus
